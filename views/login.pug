@@ -1,0 +1,12 @@
+extends ./layout.pug
+block contenido
+	form(action="/sessions", method="POST")
+		label(for="email")
+			|	Email
+		input(type="text", name="email", placeholder="Email", id="email")
+		label(for="password")
+			|	Password
+		input(type="password", name="password", placeholder="Password", id="password")
+		input(type="submit", value="Iniciar Sesión")
+		a(href="/signup")
+			|	No tengo cuenta

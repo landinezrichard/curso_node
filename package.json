@@ -1,0 +1,20 @@
+{
+  "name": "proy-imagen",
+  "version": "1.0.0",
+  "description": "Aplicación para que se suban imagenes y se puedan comentar",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ricardo Landínez <landinezrichard@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-session": "^2.0.0-beta.1",
+    "express": "^4.15.2",
+    "express-formidable": "^1.0.0",
+    "fs-extra": "^2.1.2",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.9.0",
+    "pug": "^2.0.0-beta11"
+  }
+}

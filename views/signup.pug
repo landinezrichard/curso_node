@@ -1,0 +1,18 @@
+extends ./layout.pug
+block contenido
+	form(action="/users", method="POST")
+		label(for="email")
+			|	Email
+		input(type="text", name="email", placeholder="Email", id="email")
+		label(for="username")
+			|	Username
+		input(type="text", name="username", placeholder="username", id="username")
+		label(for="password")
+			|	Password
+		input(type="password", name="password", placeholder="Password", id="password")
+		label(for="password_confirmation")
+			|	Confirma el Password
+		input(type="password", name="password_confirmation", placeholder="Confirma el Password", id="password_confirmation")
+		input(type="submit", value="Registrarse")
+		a(href="/login")
+			|	Ya tengo cuenta

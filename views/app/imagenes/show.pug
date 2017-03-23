@@ -1,0 +1,9 @@
+extends ../../layout.pug
+block contenido
+	figure
+		img(src="/images/"+imagen._id+"."+imagen.extension)
+		figcaption
+			|	La imagen: #{imagen.title}
+			if(typeof imagen.creator != 'undefined')
+				small
+					|	Por: #{imagen.creator.email}

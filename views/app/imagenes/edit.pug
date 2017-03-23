@@ -1,0 +1,9 @@
+extends ../../layout.pug
+block contenido
+	h1
+		|	Editar imagen
+	form(action="/app/imagenes/"+imagen.id+"?_method=PUT", method="POST")
+		label(for="title")
+			|	Título
+		input(type="text", name="title", placeholder="Título de la imagen...", id="title", value=imagen.title)
+		input(type="submit", value="Guardar")
