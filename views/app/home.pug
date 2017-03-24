@@ -2,3 +2,15 @@ extends ../layout.pug
 block contenido
 	p
 		|	Hola #{user.email}
+	h1
+		|	Todas las imagenes:
+	div
+		for imagen in imagenes
+			a(href="app/imagenes/"+imagen._id)
+				figure
+					img(src="/images/"+imagen._id+"."+imagen.extension)
+					figcaption
+						|	La imagen: #{imagen.title}
+						if(typeof imagen.creator != 'undefined')
+							small
+								|	Por: #{imagen.creator.email}
