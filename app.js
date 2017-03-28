@@ -1,20 +1,32 @@
 var express = require('express'),
 	User = require('./models/user').User,
-	cookieSession = require('cookie-session'),
+	session = require('express-session'),
 	router_app = require('./routes_app'),
 	session_middleware = require('./middlewares/session'),
 	methodOverride = require('method-override'),
-	formidable = require('express-formidable');
+	formidable = require('express-formidable'),
+	http = require('http'),
+	RedisStore = require('connect-redis')(session),
+	realtime = require('./realtime');
+
 var	app = express();
+//creamos un nuevo servidor al cual le pasamos nuestra app de express, para que la configuración siga igual.
+var server = http.Server(app);
 
 app.use( methodOverride('_method') );
 
 app.use(express.static('./public'));
 
-app.use(cookieSession({
-	name: 'session',
-	keys: ['llave-1','llave-2']
-}));
+var sessionMiddleware = session({
+	store : new RedisStore({}), // XXX redis server config
+	secret: 'super ultra secret word',
+	resave: true,
+	saveUninitialized: true
+});
+
+app.use(sessionMiddleware);
+
+realtime(server,sessionMiddleware);
 
 app.use(formidable({
 	keepExtensions: true
@@ -65,4 +77,8 @@ app.use('/app', session_middleware);
 
 app.use('/app', router_app);
 
-app.listen(8080);
+/*
+en vez de app.listen(8080)
+le indicamos que sea el servidor de http el que escuche las peticiones	
+*/
+server.listen(8080);

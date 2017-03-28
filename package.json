@@ -9,12 +9,15 @@
   "author": "Ricardo Landínez <landinezrichard@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "connect-redis": "^3.2.0",
     "cookie-session": "^2.0.0-beta.1",
     "express": "^4.15.2",
     "express-formidable": "^1.0.0",
+    "express-session": "^1.15.2",
     "fs-extra": "^2.1.2",
     "method-override": "^2.3.7",
     "mongoose": "^4.9.0",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "socket.io": "^1.7.3"
   }
 }
