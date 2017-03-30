@@ -4,7 +4,7 @@ block contenido
 		|	Hola #{user.email}
 	h1
 		|	Todas las imagenes:
-	div
+	div(id="imagenes")
 		for imagen in imagenes
 			a(href="app/imagenes/"+imagen._id)
 				figure
@@ -15,3 +15,11 @@ block contenido
 							small
 								|	Por: #{imagen.creator.email}
 	script(src="/js/client.js", type="text/javascript")
+	script(id="image-template", type="text/x-handlebars-template")
+		a(href="app/imagenes/{{id}}")
+			figure
+				img(src="/images/{{id}}.{{extension}}")
+				figcaption
+					|	La imagen: {{title}}
+					small
+						|	Por: {{creator}}

@@ -90,11 +90,12 @@ router.route('/imagenes')
 				var imgJSON = {
 					"id": imagen._id,
 					"title": imagen.title,
-					"extension": imagen.extension
+					"extension": imagen.extension,
+					"creator": res.locals.user.email
 				};
 
 				client.publish('images', JSON.stringify(imgJSON) );
-				
+
 				fse.copy(req.files.archivo.path, 'public/images/'+imagen._id+'.'+extension);
 				res.redirect('/app/imagenes/'+imagen._id);
 			}else{
