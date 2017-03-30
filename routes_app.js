@@ -1,7 +1,10 @@
 var express = require('express');
 var Imagen = require('./models/imagenes');
 var image_finder_middleware = require('./middlewares/find_image');
-var fse= require('fs-extra');
+var fse= require('fs-extra'),
+	redis = require('redis');
+
+var client = redis.createClient();
 
 var router = express.Router();
 
@@ -83,6 +86,8 @@ router.route('/imagenes')
 
 		imagen.save(function(err){
 			if(!err){
+				//hacemos que el cliente publique al canal "images" cada vez que se crea una nueva imagen
+				client.publish('images', imagen.toString());
 				fse.copy(req.files.archivo.path, 'public/images/'+imagen._id+'.'+extension);
 				res.redirect('/app/imagenes/'+imagen._id);
 			}else{
