@@ -87,7 +87,14 @@ router.route('/imagenes')
 		imagen.save(function(err){
 			if(!err){
 				//hacemos que el cliente publique al canal "images" cada vez que se crea una nueva imagen
-				client.publish('images', imagen.toString());
+				var imgJSON = {
+					"id": imagen._id,
+					"title": imagen.title,
+					"extension": imagen.extension
+				};
+
+				client.publish('images', JSON.stringify(imgJSON) );
+				
 				fse.copy(req.files.archivo.path, 'public/images/'+imagen._id+'.'+extension);
 				res.redirect('/app/imagenes/'+imagen._id);
 			}else{

@@ -16,8 +16,9 @@ module.exports = function(server, sessionMiddleware){
 
 	/*Creamos un callback que se ejecuta cada vez que halla un nuevo message (en este caso una nueva imagen)*/
 	client.on('message', function(channel, message){
-		console.log('Recibimos un mensage del canal: '+channel);
-		console.log(message);
+		if(channel == 'images'){
+			io.emit('new image', message);
+		}
 	});
 
 
